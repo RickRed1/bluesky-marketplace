@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Governance & CEX Terminal — BlueSky</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        spaceBlack: '#020617',
+                        cardDark: '#0f172a',
+                        neonBlue: '#0ea5e9',
+                        neonCyan: '#22d3ee',
+                        accentNavy: '#1e3a8a',
+                        enterpriseGreen: '#10b981'
+                    }
+                }
+            }
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            setInterval(() => {
+                document.getElementById('live-timestamp').innerText = new Date().toISOString();
+            }, 1000);
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .galaxy-bg {
+            background: linear-gradient(135deg, #020617 0%, #090d16 50%, #0f172a 100%),
+                        radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 40%);
+        }
+    </style>
+</head>
+<body class="galaxy-bg text-white font-sans antialiased min-h-screen">
+
+    <!-- Navigation Header -->
+    <nav class="flex items-center justify-between px-6 py-4 border-b border-slate-800/80 sticky top-0 bg-spaceBlack/80 backdrop-blur-md z-50">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href='index.html'">
+            <div class="w-10 h-10 bg-gradient-to-tr from-neonBlue to-neonCyan rounded-xl flex items-center justify-center text-xl font-bold shadow-lg shadow-cyan-500/30">
+                <i class="fa-solid fa-shield-halved text-spaceBlack"></i>
+            </div>
+            <span class="text-xl font-black tracking-wider bg-gradient-to-r from-white via-cyan-200 to-neonCyan bg-clip-text text-transparent">BLUESKY ENTERPRISE</span>
+        </div>
+        <div class="flex items-center space-x-6 text-xs font-semibold uppercase tracking-wider">
+            <a href="index.html" class="hover:text-neonCyan transition">Home</a>
+            <a href="explore.html" class="hover:text-neonCyan transition">Explore</a>
+            <a href="enterprise.html" class="text-neonCyan font-bold">Enterprise</a>
+            <a href="profile.html" class="hover:text-neonCyan transition">Profile</a>
+        </div>
+    </nav>
+
+    <!-- Main Enterprise Dashboard -->
+    <main class="max-w-7xl mx-auto px-6 py-10 space-y-8">
+        <div>
+            <h1 class="text-3xl font-black tracking-tight">Institutional Governance & CEX Terminal</h1>
+            <p class="text-slate-400 text-xs mt-1">Real-time liquidity monitoring, compliance guards, and ZK-proof verification layers.</p>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-cardDark border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <div class="text-slate-400 text-xs uppercase tracking-wider font-mono">CEX Relay Status</div>
+                <div class="text-2xl font-black text-emerald-400 mt-2 flex items-center">
+                    <i class="fa-solid fa-circle-check text-xs mr-2 animate-pulse"></i> Synchronized
+                </div>
+                <p class="text-xs text-slate-500 mt-2">Latency: 14ms | Multi-Chain Active</p>
+            </div>
+            <div class="bg-cardDark border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <div class="text-slate-400 text-xs uppercase tracking-wider font-mono">Compliance Guard</div>
+                <div class="text-2xl font-black text-cyan-300 mt-2">SEC / MiCA Ready</div>
+                <p class="text-xs text-slate-500 mt-2">Zero-Knowledge State Proofs Enabled</p>
+            </div>
+            <div class="bg-cardDark border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <div class="text-slate-400 text-xs uppercase tracking-wider font-mono">Active Node Session</div>
+                <div id="live-timestamp" class="text-xs font-mono font-bold text-slate-200 mt-3">Initializing...</div>
+                <p class="text-xs text-slate-500 mt-2">Encrypted Tunnel Active</p>
+            </div>
+        </div>
+
+        <!-- Institutional Order Book Table -->
+        <div class="bg-cardDark border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-base font-bold"><i class="fa-solid fa-chart-line mr-2 text-neonCyan"></i> Institutional Liquidity & Asset Ledger</h2>
+                <button onclick="alert('Exporting audit compliance report logs...')" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition">Export CSV Log</button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead class="text-slate-400 uppercase border-b border-slate-800 font-mono">
+                        <tr>
+                            <th class="pb-3">Asset Identifier</th>
+                            <th class="pb-3">Protocol / Standard</th>
+                            <th class="pb-3">Liquidity Depth</th>
+                            <th class="pb-3">24h Volume</th>
+                            <th class="pb-3">Action Desk</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr>
+                            <td class="py-4 font-bold text-white">Prism Core #0192</td>
+                            <td class="font-mono text-cyan-300">ERC-721 / ZK-Bridge</td>
+                            <td class="font-mono">1,450.00 MATIC</td>
+                            <td class="font-mono">124.50 MATIC</td>
+                            <td><button onclick="alert('Executing institutional block trade order...')" class="bg-neonBlue hover:bg-sky-600 px-3 py-1.5 rounded-lg font-bold text-white transition">Trade Desk</button></td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 font-bold text-white">Hiera-Key Genesis Node</td>
+                            <td class="font-mono text-cyan-300">ERC-1155 / Hardened</td>
+                            <td class="font-mono">8,200.00 MATIC</td>
+                            <td class="font-mono">890.12 MATIC</td>
+                            <td><button onclick="alert('Executing institutional block trade order...')" class="bg-neonBlue hover:bg-sky-600 px-3 py-1.5 rounded-lg font-bold text-white transition">Trade Desk</button></td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 font-bold text-white">AICRU Hephaestus Unit</td>
+                            <td class="font-mono text-cyan-300">Robotics / Decentralized</td>
+                            <td class="font-mono">15,400.00 MATIC</td>
+                            <td class="font-mono">2,140.00 MATIC</td>
+                            <td><button onclick="alert('Executing institutional block trade order...')" class="bg-neonBlue hover:bg-sky-600 px-3 py-1.5 rounded-lg font-bold text-white transition">Trade Desk</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
