@@ -3,51 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore — BlueSky Marketplace</title>
+    <title>Explore Assets — BlueSky Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        openseaDark: '#04111d',
-                        openseaCard: '#262b2f',
-                        openseaBlue: '#2081e2',
-                        openseaHover: '#1868b7'
+                        spaceBlack: '#020617',
+                        cardDark: '#0f172a',
+                        neonBlue: '#0ea5e9',
+                        neonCyan: '#22d3ee',
+                        accentNavy: '#1e3a8a'
                     }
                 }
             }
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .galaxy-bg {
+            background: linear-gradient(135deg, #020617 0%, #090d16 50%, #0f172a 100%),
+                        radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 40%);
+        }
+    </style>
 </head>
-<body class="bg-openseaDark text-white font-sans antialiased">
-    <nav class="flex items-center justify-between px-6 py-4 border-b border-gray-800 sticky top-0 bg-openseaDark/90 backdrop-blur-md z-50">
+<body class="galaxy-bg text-white font-sans antialiased min-h-screen">
+
+    <!-- Navigation Header -->
+    <nav class="flex items-center justify-between px-6 py-4 border-b border-slate-800/80 sticky top-0 bg-spaceBlack/80 backdrop-blur-md z-50">
         <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href='index.html'">
-            <div class="w-10 h-10 bg-openseaBlue rounded-full flex items-center justify-center text-xl font-bold">
-                <i class="fa-solid fa-cloud"></i>
+            <div class="w-10 h-10 bg-gradient-to-tr from-neonBlue to-neonCyan rounded-xl flex items-center justify-center text-xl font-bold shadow-lg shadow-cyan-500/30">
+                <i class="fa-solid fa-gamepad text-spaceBlack"></i>
             </div>
-            <span class="text-xl font-bold">BlueSky</span>
+            <span class="text-xl font-black tracking-wider bg-gradient-to-r from-white via-cyan-200 to-neonCyan bg-clip-text text-transparent">BLUESKY</span>
         </div>
-        <div class="flex items-center space-x-6 text-sm font-medium">
-            <a href="index.html" class="hover:text-openseaBlue transition">Home</a>
-            <a href="explore.html" class="text-openseaBlue font-bold">Explore</a>
-            <a href="profile.html" class="hover:text-openseaBlue transition">Profile</a>
+        <div class="hidden md:flex items-center bg-slate-900/80 rounded-xl px-4 py-2 w-72 border border-slate-700/50">
+            <i class="fa-solid fa-magnifying-glass text-cyan-400 mr-3 text-xs"></i>
+            <input type="text" placeholder="Filter gaming nodes, TCG cards..." class="bg-transparent border-none outline-none text-xs w-full text-slate-200 placeholder-slate-500">
+        </div>
+        <div class="flex items-center space-x-6 text-xs font-semibold uppercase tracking-wider">
+            <a href="index.html" class="hover:text-neonCyan transition">Home</a>
+            <a href="explore.html" class="text-neonCyan font-bold">Explore</a>
+            <a href="enterprise.html" class="hover:text-neonCyan transition">Enterprise</a>
+            <a href="profile.html" class="hover:text-neonCyan transition">Profile</a>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-10">
-        <h1 class="text-3xl font-extrabold mb-6">Explore Assets & CEX Indices</h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-openseaCard rounded-2xl overflow-hidden border border-gray-800 hover:border-openseaBlue transition cursor-pointer" onclick="window.location.href='item.html'">
-                <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1620641788421-7a1c3424e2q=80&w=500&auto=format&fit=crop');"></div>
-                <div class="p-4">
-                    <span class="text-[10px] text-openseaBlue uppercase tracking-widest font-bold">Polygon Unfiltered</span>
-                    <h3 class="font-bold text-base mt-1">Prism Core #0192</h3>
-                    <div class="flex justify-between items-center mt-4 pt-3 border-t border-gray-700/50 text-sm">
-                        <span class="text-gray-400">Price</span>
-                        <span class="font-bold text-openseaBlue">0.45 MATIC</span>
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-6 py-10 space-y-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <h1 class="text-3xl font-black tracking-tight">Explore Gaming Assets & CEX Indices</h1>
+                <p class="text-slate-400 text-xs mt-1">Real-time indexed tokens, TCG inventory, and decentralized nodes.</p>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-xs text-slate-400 font-mono">Sort by:</span>
+                <select class="bg-cardDark border border-slate-700 text-xs text-slate-200 rounded-xl px-3 py-2 outline-none focus:border-neonCyan">
+                    <option>Recently Listed</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Highest Liquidity</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Asset Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div onclick="window.location.href='item.html'" class="bg-cardDark border border-slate-800 rounded-2xl overflow-hidden hover:border-neonCyan/50 transition cursor-pointer group shadow-xl">
+                <div class="h-56 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1620641788421-7a1c3424e2d3?q=80&w=500&auto=format&fit=crop');">
+                    <div class="absolute top-3 right-3 bg-spaceBlack/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-mono text-cyan-300 border border-slate-700">Polygon</div>
+                </div>
+                <div class="p-5 space-y-3">
+                    <div class="text-xs text-neonCyan font-mono uppercase tracking-wider">Unfiltered TCG #01</div>
+                    <div class="font-bold text-base text-white group-hover:text-cyan-300 transition">Prism Core #0192</div>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-xs">
+                        <span class="text-slate-400">Floor Price</span>
+                        <span class="font-bold text-white font-mono">0.45 MATIC</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div onclick="window.location.href='item.html'" class="bg-cardDark border border-slate-800 rounded-2xl overflow-hidden hover:border-neonCyan/50 transition cursor-pointer group shadow-xl">
+                <div class="h-56 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500&auto=format&fit=crop');">
+                    <div class="absolute top-3 right-3 bg-spaceBlack/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-mono text-cyan-300 border border-slate-700">ERC-721</div>
+                </div>
+                <div class="p-5 space-y-3">
+                    <div class="text-xs text-neonCyan font-mono uppercase tracking-wider">Hiera-Key Genesis</div>
+                    <div class="font-bold text-base text-white group-hover:text-cyan-300 transition">Cyber Deck Node v4</div>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-xs">
+                        <span class="text-slate-400">Floor Price</span>
+                        <span class="font-bold text-white font-mono">1.80 MATIC</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div onclick="window.location.href='item.html'" class="bg-cardDark border border-slate-800 rounded-2xl overflow-hidden hover:border-neonCyan/50 transition cursor-pointer group shadow-xl">
+                <div class="h-56 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=500&auto=format&fit=crop');">
+                    <div class="absolute top-3 right-3 bg-spaceBlack/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-mono text-cyan-300 border border-slate-700">Polygon</div>
+                </div>
+                <div class="p-5 space-y-3">
+                    <div class="text-xs text-neonCyan font-mono uppercase tracking-wider">AICRU Hephaestus</div>
+                    <div class="font-bold text-base text-white group-hover:text-cyan-300 transition">Autonomous Drone Unit</div>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-xs">
+                        <span class="text-slate-400">Floor Price</span>
+                        <span class="font-bold text-white font-mono">3.20 MATIC</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div onclick="window.location.href='item.html'" class="bg-cardDark border border-slate-800 rounded-2xl overflow-hidden hover:border-neonCyan/50 transition cursor-pointer group shadow-xl">
+                <div class="h-56 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500&auto=format&fit=crop');">
+                    <div class="absolute top-3 right-3 bg-spaceBlack/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-mono text-cyan-300 border border-slate-700">ERC-1155</div>
+                </div>
+                <div class="p-5 space-y-3">
+                    <div class="text-xs text-neonCyan font-mono uppercase tracking-wider">Vantage Shield</div>
+                    <div class="font-bold text-base text-white group-hover:text-cyan-300 transition">Hardened Kernel Key</div>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-xs">
+                        <span class="text-slate-400">Floor Price</span>
+                        <span class="font-bold text-white font-mono">0.95 MATIC</span>
                     </div>
                 </div>
             </div>
